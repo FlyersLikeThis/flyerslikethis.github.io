@@ -676,7 +676,7 @@
                         </a>
                     </div>
                     <div class="soc-item">
-                        <a href="index.html" target="_blank">
+                        <a href="https://instagram/flyerslikethis" target="_blank">
                             <span class="mbr-iconfont socicon-instagram socicon" style="color: rgb(241, 92, 51); fill: rgb(241, 92, 51);"></span>
                         </a>
                     </div>
@@ -705,4 +705,28 @@
  <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>
     <input name="animation" type="hidden">
   </body>
+	<!-- Form Valiodation script -->
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbytpsIxpFjPgvTTv-7MP1gPC_NlLnRnsrn0VkFnyhebJ2El66QFsRJ1gGMZluqlQHGW/exec'
+    const form = document.querySelector('#form')
+    const btn = document.querySelector('#submit')
+
+
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      btn.disabled = true
+      btn.innerHTML = "Loading..."
+
+      console.log(form)
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => { 
+              btn.disabled = false
+      btn.innerHTML = "Submit"
+            alert('Your information has been sent to us successfully, you may continue browsing our website.', response) })
+        .catch(error => {
+                     btn.disabled = false
+      btn.innerHTML = "Submit"
+            alert('Please ensure you complete all the information required in the form.', error.message)})
+    })
+</script>
 </html>
